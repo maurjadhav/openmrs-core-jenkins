@@ -21,7 +21,7 @@ pipeline {
                     subject: "Build started for ${JOB_BASE_NAME} with Build Id ${BUILD_ID}", to: 'all@learnigthoughts.io'
 
                 sh "mvn ${params.MAVEN_GOAL}"
-                junit testResults: 'webapp/target/surefire-reports/*.xml'
+                junit testResults: 'liquibase/target/surefire-reports/*.xml'
                 archive 'webapp/target/*.war'
             }
             post {
