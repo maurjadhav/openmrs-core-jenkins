@@ -6,7 +6,7 @@ pipeline {
         choice(name: 'MAVEN_GOAL', choices: ['compile', 'package', 'clean package'], description: 'This is MAVEN_GOAL Pick one Option') 
     }
     triggers {
-        pollSCM('*/10 * * * 0-6')
+        pollSCM('*/15 * * * 0-6')
     }
     stages {
         stage('git clone') {
@@ -21,8 +21,8 @@ pipeline {
                     subject: "Build started for ${JOB_BASE_NAME} with Build Id ${BUILD_ID}", to: 'all@learnigthoughts.io'
 
                 sh "mvn ${params.MAVEN_GOAL}"
-                junit testResults: '**/surefire-reports/*.xml'
-                archive 'target/spring-petclinic-*.jar'
+               // junit testResults: 'webapp/surefire-reports/*.xml'
+                archive 'webapp/target/*.war'
             }
             post {
                 failure {
