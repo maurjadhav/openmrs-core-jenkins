@@ -12,7 +12,7 @@ pipeline {
         stage('git clone') {
             steps {
                 git url: 'https://github.com/maurjadhav/openmrs-core-jenkins.git',
-                    branch: 'main'
+                    branch: 'master'
             }
         }
         stage('build') {
